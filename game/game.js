@@ -50,7 +50,7 @@
     if (state.flags.loveTarget === "ken") love = "Ken";
     if (state.flags.loveTarget === "vera") love = "Vera";
     return String(text)
-      .split("{player}").join(state.playerName || "Your section")
+      .split("{player}").join(state.playerName || "Your name")
       .split("{stoodName}").join(state.flags.stoodName || "them")
       .split("{loveName}").join(love);
   }
@@ -123,13 +123,12 @@
     return {
       ending: state.endingId,
       title: card.title,
-      player: state.playerName || "Your section",
-      capital: card.capital,
-      plans: card.plans,
-      seat: card.seat,
-      seatId: card.seatId,
-      guest: card.guest === "________" ? "" : card.guest,
-      veraPresent: !!card.veraPresent,
+      player: state.playerName || "Your name",
+      whatYouDid: card.attention,
+      heard: card.heard,
+      where: card.where,
+      withYou: card.withYou === "________" ? "" : card.withYou,
+      veraHere: !!card.veraPresent,
       kenStamps: state.stamps,
       veraHearts: state.hearts
     };
@@ -140,7 +139,7 @@
 
     function blank() {
       return {
-        playerName: "Your section",
+        playerName: "Your name",
         hearts: 0,
         stamps: 0,
         clock: parseClock("6:40pm"),
@@ -237,7 +236,7 @@
     }
 
     function start(name) {
-      var keep = name || (state && state.playerName) || "Your section";
+      var keep = name || (state && state.playerName) || "Your name";
       state = blank();
       state.playerName = keep;
       go(story.start);
@@ -320,7 +319,7 @@
     }
 
     function setName(name) {
-      state.playerName = name || "Your section";
+      state.playerName = name || "Your name";
     }
 
     state = blank();
@@ -424,29 +423,27 @@
 
     function renderCard(snapshot) {
       var card = snapshot.card;
-      var plans = card.plans.length
-        ? card.plans.map(function (plan) {
-          var label = plan.quality === "real" ? "Real" : "Junk";
-          return "<li><span class=\"quality " + plan.quality + "\">" + label + "</span> " + escapeHtml(plan.name) + "</li>";
+      var heard = card.heard.length
+        ? card.heard.map(function (item) {
+          var label = item.quality === "real" ? "True" : "Noise";
+          return "<li><span class=\"quality " + item.quality + "\">" + label + "</span> " + escapeHtml(item.name) + "</li>";
         }).join("")
-        : "<li class=\"none\">No plan</li>";
+        : "<li class=\"none\">You never heard it.</li>";
       var basket = snapshot.endingId === "two-taxis" ? "<p class=\"basket\">The basket is empty.</p>" : "";
       endingEl.innerHTML =
         "<article class=\"invite\">" +
-        "<p class=\"kicker\">Bidding card</p>" +
+        "<p class=\"kicker\">The decision</p>" +
         "<h2>" + escapeHtml(card.title) + "</h2>" +
         "<p class=\"who\">" + escapeHtml(snapshot.playerName) + "</p>" +
         "<dl>" +
-        "<div><dt>Capital</dt><dd>" + escapeHtml(card.capital) + "</dd></div>" +
-        "<div><dt>Seat</dt><dd>" + escapeHtml(card.seat) + "</dd></div>" +
-        "<div><dt>Guest</dt><dd>" + escapeHtml(card.guest) + "</dd></div>" +
+        "<div><dt>What you did</dt><dd>" + escapeHtml(card.attention) + "</dd></div>" +
+        "<div><dt>Where you ended</dt><dd>" + escapeHtml(card.where) + "</dd></div>" +
+        "<div><dt>Who is with you</dt><dd>" + escapeHtml(card.withYou) + "</dd></div>" +
         "</dl>" +
-        "<h3>Plans</h3><ul class=\"plans\">" + plans + "</ul>" +
+        "<h3>What you heard</h3><ul class=\"plans\">" + heard + "</ul>" +
         "<p class=\"phone\"><span>Momo</span> " + escapeHtml(card.momo) + "</p>" +
         basket +
         "<p class=\"research\">" + escapeHtml(snapshot.research) + "</p>" +
-        "<pre class=\"loadout\">" + escapeHtml(JSON.stringify(snapshot.loadout, null, 2)) + "</pre>" +
-        "<p class=\"handoff\">Game 2 reads this card. It is not in this episode.</p>" +
         "<button type=\"button\" id=\"again\">Play again</button>" +
         "</article>";
       document.getElementById("again").addEventListener("click", function () {

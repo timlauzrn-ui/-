@@ -1,66 +1,61 @@
 {
   "title": "7:30",
   "start": "cold",
-  "research": "Time pressure lowers decision quality because the loud thing (a steak photo, a face, a joke) beats the page you did not read.",
+  "research": "Time pressure lowers decision quality because the loud thing (a photo, a face, a joke) beats what the person actually said.",
   "endings": {
     "plus-one": {
-      "title": "Plus-one",
+      "title": "With Vera",
       "momo": "She said hi. I hid the crackers.",
-      "capital": "High",
-      "plans": [{ "name": "Vera's one page", "quality": "real" }],
-      "seat": "Plus-one with Vera",
-      "seatId": "plus-one",
-      "guest": "Vera",
+      "attention": "You listened",
+      "heard": [{ "name": "She wanted one real conversation", "quality": "real" }],
+      "where": "In the cab with her",
+      "withYou": "Vera",
       "veraPresent": true
     },
     "two-real": {
-      "title": "Two real deals",
-      "momo": "Sir Loin sends his regards, which is horrifying.",
-      "capital": "Medium",
-      "plans": [
-        { "name": "Cold-storage lease", "quality": "real" },
-        { "name": "Night-ferry catering", "quality": "real" }
+      "title": "Two true things",
+      "momo": "He says the steak says hello, which is horrifying.",
+      "attention": "You sorted the noise",
+      "heard": [
+        { "name": "He saved you a seat", "quality": "real" },
+        { "name": "He was nervous", "quality": "real" }
       ],
-      "seat": "Ken's solo sponsor",
-      "seatId": "ken-sponsor",
-      "guest": "________",
+      "where": "Ken's table, then alone",
+      "withYou": "________",
       "veraPresent": false
     },
     "armful": {
-      "title": "Armful of paper",
-      "momo": "You have a folder and no friends at table 9.",
-      "capital": "A big number",
-      "plans": [
-        { "name": "Cold-storage lease", "quality": "real" },
-        { "name": "Night-ferry catering", "quality": "real" },
-        { "name": "Sauce collab", "quality": "junk" },
-        { "name": "Gym-towel line", "quality": "junk" },
-        { "name": "Steak perfume", "quality": "junk" },
-        { "name": "Sir Loin plush", "quality": "junk" }
+      "title": "The whole show",
+      "momo": "You have six stories and nobody to walk out with.",
+      "attention": "You took the loud parts",
+      "heard": [
+        { "name": "He saved you a seat", "quality": "real" },
+        { "name": "He was nervous", "quality": "real" },
+        { "name": "The steak has a name", "quality": "junk" },
+        { "name": "The gym story", "quality": "junk" },
+        { "name": "One more photo", "quality": "junk" },
+        { "name": "Sir Loin the Second", "quality": "junk" }
       ],
-      "seat": "Ken's solo sponsor",
-      "seatId": "ken-sponsor",
-      "guest": "________",
+      "where": "Still at the loud table",
+      "withYou": "________",
       "veraPresent": false
     },
     "nice": {
-      "title": "Nice dinner",
-      "momo": "Romantic. Broke. On brand.",
-      "capital": "Low",
-      "plans": [],
-      "seat": "Polite solo seat",
-      "seatId": "polite-solo",
-      "guest": "________",
+      "title": "A nice dinner",
+      "momo": "Romantic. Unfinished. On brand.",
+      "attention": "You liked the surface",
+      "heard": [],
+      "where": "A polite goodbye",
+      "withYou": "________",
       "veraPresent": false
     },
     "two-taxis": {
       "title": "Two taxis",
-      "momo": "I ate every cracker. Photo attached: the basket is empty.",
-      "capital": "Pocket change",
-      "plans": [],
-      "seat": "Staff ticket",
-      "seatId": "staff",
-      "guest": "________",
+      "momo": "I ate every cracker. The basket is empty. So is your evening.",
+      "attention": "You tried to keep both",
+      "heard": [],
+      "where": "Between them",
+      "withYou": "________",
       "veraPresent": false
     }
   },
@@ -68,55 +63,55 @@
     "cold": {
       "clock": "6:40pm",
       "lines": [
-        { "speaker": "email", "text": "CLOSED BID TONIGHT. Your seat is penciled. A director must sponsor you by 9:30 or we erase the pencil. Guest: ________." },
-        { "speaker": "momo", "text": "Table 9. Crackers are finite. Fill in the blank or I finish them." }
+        { "speaker": "momo", "text": "Friday. Two people want the evening. You only get one. I am at the party, eating the crackers you were promised." },
+        { "speaker": "you", "text": "Ken sent a photo. Vera sent four seconds of voice. Somebody has to be chosen by 9:30, or you go home with neither." }
       ],
       "choices": [
-        { "text": "Leave the guest line blank and keep reading.", "to": "pings" },
-        { "text": "Type Momo, then delete it like a coward.", "joke": true, "to": "pings" },
-        { "text": "Put {player} on the pencil, and nothing else.", "to": "pings" }
+        { "text": "Read both names and don't answer yet.", "to": "pings" },
+        { "text": "Type Momo as your date, then delete it.", "joke": true, "to": "pings" },
+        { "text": "Put {player} in the chat, and then say nothing.", "to": "pings" }
       ]
     },
     "pings": {
       "clock": "6:58pm",
       "lines": [
-        { "speaker": "ken", "text": "HE HAS A NAME. Come meet Sir Loin. Six deals in the folder." },
-        { "speaker": "vera", "text": "quiet table. one page. don't be a brochure." },
-        { "speaker": "momo", "text": "Two bosses. One stomach. I am already chewing, so choose." }
+        { "speaker": "ken", "text": "COME. I ordered for someone named Sir Loin. That someone is the steak. Also I miss you. Unless that was the sauce." },
+        { "speaker": "vera", "text": "quiet table. one real conversation. don't perform." },
+        { "speaker": "momo", "text": "The loud one or the quiet one. I am chewing, so this is urgent." }
       ],
       "choices": [
-        { "text": "Open the folder.", "to": "folder-peek", "fx": { "set": { "opened": "ken" } } },
+        { "text": "Open Ken's photo.", "to": "folder-peek", "fx": { "set": { "opened": "ken" } } },
         { "text": "Reply to both: \"On my way.\"", "joke": true, "to": "coffin", "fx": { "set": { "doubleBooked": true, "opened": "neither" } } },
         { "text": "Play the voice note twice, like a normal person.", "to": "note", "fx": { "set": { "opened": "vera" }, "addHearts": 1 } }
       ]
     },
     "folder-peek": {
       "lines": [
-        { "speaker": "you", "text": "Six pages. One of them is smeared in sauce. The steak photo is louder than all of them." },
-        { "speaker": "momo", "text": "If you lick it, that is not diligence." }
+        { "speaker": "you", "text": "Six bubbles under the photo. Two of them sound like he means them. Four are just him being loud." },
+        { "speaker": "momo", "text": "If you fall for the steak, I will allow it and I will mock it." }
       ],
       "choices": [
-        { "text": "Count the pages. Do not lick the sauce.", "to": "read" },
-        { "text": "Name the stain before you name the deals.", "joke": true, "to": "read", "fx": { "addMinutes": 6 } },
-        { "text": "Close it. You saw a steak, not a number.", "to": "read" }
+        { "text": "Count which lines sound true.", "to": "read" },
+        { "text": "Name the steak before you name the feeling.", "joke": true, "to": "read", "fx": { "addMinutes": 6 } },
+        { "text": "Close it. You saw a photo, not a person.", "to": "read" }
       ]
     },
     "note": {
       "addMinutes": 4,
       "lines": [
-        { "speaker": "vera", "text": "Four seconds. You play it again. Quiet table. One page. Don't be a brochure." },
+        { "speaker": "vera", "text": "Four seconds. You play it again. Quiet table. One real conversation. Don't perform." },
         { "speaker": "momo", "text": "You listened like it was a spell. She has still not said hello." }
       ],
       "choices": [
         { "text": "Save it. You'll want the exact words.", "to": "read" },
-        { "text": "Forward it to Momo. She will add sauce.", "joke": true, "to": "read" },
-        { "text": "Listen for the word brochure, then stop.", "to": "read" }
+        { "text": "Forward it to Momo. She will narrate it badly.", "joke": true, "to": "read" },
+        { "text": "Listen for \"don't perform,\" then stop.", "to": "read" }
       ]
     },
     "coffin": {
       "lines": [
-        { "speaker": "momo", "text": "Coffin emoji. You told two directors you were on the way. That is a procession, not a plan." },
-        { "speaker": "you", "text": "Two taxis accept the job at the same time." }
+        { "speaker": "momo", "text": "Coffin emoji. You told two dates you were on the way. That is a procession, not a choice." },
+        { "speaker": "you", "text": "Two taxis accept at the same time." }
       ],
       "choices": [
         { "text": "Tell Momo it is a strategy.", "to": "read" },
@@ -128,87 +123,87 @@
       "clock": "7:06pm",
       "lines": [
         { "speaker": "momo", "text": "The curb is right there. So is a taxi. So am I, and I am chewing." },
-        { "speaker": "you", "text": "Do you actually read." }
+        { "speaker": "you", "text": "Do you actually listen." }
       ],
       "choices": [
-        { "text": "Sit on the curb and read both. A taxi honks the whole time.", "to": "truth-both", "fx": { "set": { "readBoth": true }, "addHearts": 1, "addMinutes": 18 } },
-        { "text": "Ask Momo to summarize.", "joke": true, "to": "truth-momo", "fx": { "set": { "momoLied": true } } },
-        { "text": "Read only whoever you opened.", "op": "readOpened" }
+        { "text": "Sit on the curb and listen to both. A taxi honks the whole time.", "to": "truth-both", "fx": { "set": { "readBoth": true }, "addHearts": 1, "addMinutes": 18 } },
+        { "text": "Ask Momo what they meant.", "joke": true, "to": "truth-momo", "fx": { "set": { "momoLied": true } } },
+        { "text": "Listen only to whoever you opened.", "op": "readOpened" }
       ]
     },
     "truth-both": {
       "lines": [
-        { "speaker": "you", "text": "Two of Ken's deals are real: the cold-storage lease and the night-ferry catering. Four are noise." },
-        { "speaker": "you", "text": "Vera's one page pays more than both real deals if she is in the room." },
-        { "speaker": "momo", "text": "The taxi is filing a complaint. I respect it." }
+        { "speaker": "you", "text": "Ken meant two things: he saved you a seat, and he is nervous. The steak, the gym, the nicknames, the extra photos are noise." },
+        { "speaker": "you", "text": "Vera meant one thing. She wants a real conversation, and it only works if you are actually there." },
+        { "speaker": "momo", "text": "The taxi is filing a complaint. I respect its boundaries." }
       ],
       "choices": [
-        { "text": "Keep the two real names in your head.", "to": "table" },
+        { "text": "Keep the two true things in your head.", "to": "table" },
         { "text": "Honk back. The taxi started it.", "joke": true, "to": "table", "fx": { "addMinutes": 8 } },
         { "text": "Stand up. Text nobody.", "to": "table" }
       ]
     },
     "truth-vera": {
       "lines": [
-        { "speaker": "you", "text": "You read her one page. It is short, and it pays if she is in the room. Ken's six stay shut." },
-        { "speaker": "momo", "text": "You know her sentence and none of his sauces. Romantic already." }
+        { "speaker": "you", "text": "You heard her. One real conversation, if you show up as a person and not a performance. Ken's thread stays closed." },
+        { "speaker": "momo", "text": "You know her sentence and none of his. Romantic already." }
       ],
       "choices": [
-        { "text": "Hold onto her page.", "to": "table" },
-        { "text": "Ask Momo if short means rich. She says movie.", "joke": true, "to": "table", "fx": { "set": { "momoLied": true } } },
-        { "text": "Close it before you start acting like a brochure.", "to": "table" }
+        { "text": "Hold onto what she said.", "to": "table" },
+        { "text": "Ask Momo if quiet means mysterious. She says movie.", "joke": true, "to": "table", "fx": { "set": { "momoLied": true } } },
+        { "text": "Close it before you start performing.", "to": "table" }
       ]
     },
     "truth-ken": {
       "lines": [
-        { "speaker": "you", "text": "You only opened Ken. Two pages might be real. You could not tell which, and you did not open hers." },
-        { "speaker": "momo", "text": "The steak is still the loudest employee in your phone." }
+        { "speaker": "you", "text": "You only opened Ken. Two lines might be true. You cannot tell which, and you never played hers." },
+        { "speaker": "momo", "text": "The photo is still the loudest person in your phone." }
       ],
       "choices": [
-        { "text": "Remember the folder is sticky, not sacred.", "to": "table" },
+        { "text": "Remember the photo is loud, not true.", "to": "table" },
         { "text": "Salute Sir Loin and move on.", "joke": true, "to": "table", "fx": { "addMinutes": 6 } },
-        { "text": "Tell yourself you will know it when you see it.", "to": "table" }
+        { "text": "Tell yourself you will know it when you see his face.", "to": "table" }
       ]
     },
     "truth-loud": {
       "lines": [
-        { "speaker": "you", "text": "You never opened either ping, so you read the steak. It has a name. It does not have a number." },
-        { "speaker": "momo", "text": "Bold. Incorrect. The loud thing won, which is the whole disease." }
+        { "speaker": "you", "text": "You never opened either thread, so you stared at the steak. It has a name. It is not a feeling." },
+        { "speaker": "momo", "text": "Bold. Incorrect. The loud thing won, which is the whole lesson." }
       ],
       "choices": [
-        { "text": "Admit the photo beat the page.", "to": "table" },
-        { "text": "Defend Sir Loin. He has a LinkedIn energy.", "joke": true, "to": "table" },
+        { "text": "Admit the photo beat the person.", "to": "table" },
+        { "text": "Defend Sir Loin. He has main-character energy.", "joke": true, "to": "table" },
         { "text": "Put the phone away and walk.", "to": "table" }
       ]
     },
     "truth-momo": {
       "lines": [
-        { "speaker": "momo", "text": "Ken is basically rich. Vera is basically a bond movie. There is sauce on my phone, so this is official." },
+        { "speaker": "momo", "text": "Ken is basically a golden retriever with a credit card. Vera is basically a movie where two people almost talk. There is sauce on my phone, so this is official." },
         { "speaker": "you", "text": "You walk in confident, and wrong." }
       ],
       "choices": [
         { "text": "Thank her. Walk in confident.", "to": "table" },
-        { "text": "Ask which bond. She says the one with the boat.", "joke": true, "to": "table", "fx": { "addMinutes": 6 } },
+        { "text": "Ask which movie. She says the one with the boat.", "joke": true, "to": "table", "fx": { "addMinutes": 6 } },
         { "text": "Suspect she is wrong. Go anyway.", "to": "table" }
       ]
     },
     "table": {
       "clock": "7:30pm",
       "lines": [
-        { "speaker": "momo", "text": "7:30. The pencil is still a pencil. Where do you actually sit." },
-        { "speaker": "you", "text": "Ken has a steakhouse. Vera has a quiet bar. The cha chaan teng has French toast and no patience." }
+        { "speaker": "momo", "text": "7:30. The evening is still an evening. Where do you actually sit." },
+        { "speaker": "you", "text": "Ken has a loud table. Vera has a quiet one. The cha chaan teng has French toast and no patience." }
       ],
       "choices": [
-        { "text": "Sir Loin's steakhouse.", "to": "prep-standup", "fx": { "set": { "table": "ken" } } },
-        { "text": "Cha chaan teng. Text both: French toast. Thirty minutes. Tell them it's a meeting.", "joke": true, "to": "prep-standup", "fx": { "set": { "table": "toast" }, "addMinutes": 6 } },
-        { "text": "Vera's bar, where you can hear a sentence.", "to": "prep-standup", "fx": { "set": { "table": "vera" } } }
+        { "text": "Ken's table. He is already laughing.", "to": "prep-standup", "fx": { "set": { "table": "ken" } } },
+        { "text": "Cha chaan teng. Text both: French toast. Thirty minutes. Tell them it's a date.", "joke": true, "to": "prep-standup", "fx": { "set": { "table": "toast" }, "addMinutes": 6 } },
+        { "text": "Vera's table, where you can hear a sentence.", "to": "prep-standup", "fx": { "set": { "table": "vera" } } }
       ]
     },
     "prep-standup": { "op": "prepStandup", "next": "standup" },
     "standup": {
       "clock": "7:36pm",
       "lines": [
-        { "speaker": "you", "text": "You are about to text {stoodName}. This is the whole relationship, and it is a gag." },
+        { "speaker": "you", "text": "You are about to text {stoodName}. This message is the whole decision, and it is also a gag." },
         { "speaker": "momo", "text": "Type slow. My crackers are not a metaphor and neither is this." }
       ],
       "choices": [
@@ -226,29 +221,29 @@
     },
     "love-bold": {
       "lines": [
-        { "speaker": "vera", "text": "Bold. Still bring the page." },
-        { "speaker": "momo", "text": "She did not grey out. I hate how competent that was." }
+        { "speaker": "vera", "text": "Bold. Still come as yourself." },
+        { "speaker": "momo", "text": "She answered. I hate how well that went." }
       ],
       "next": "after-text"
     },
     "love-grey": {
       "lines": [
-        { "speaker": "momo", "text": "You sent a love note to the wrong boss. She does not answer." },
-        { "speaker": "you", "text": "She does not send a second sentence. She is already gone." }
+        { "speaker": "momo", "text": "You sent a love note to the wrong person. She does not answer." },
+        { "speaker": "you", "text": "No second text. She is already gone." }
       ],
       "next": "after-text"
     },
     "love-ken": {
       "lines": [
-        { "speaker": "ken", "text": "Screenshot. He drops your \"I love you\" into the commercial chat. The chat answers with steak." },
-        { "speaker": "momo", "text": "Stamp for chaos. Minutes for the bit. I hope the steak is flattered." }
+        { "speaker": "ken", "text": "He screenshots your \"I love you\" into the group chat. The chat answers with steak." },
+        { "speaker": "momo", "text": "A stamp for chaos. Minutes for the bit. The steak is flattered, which is worse." }
       ],
       "next": "after-text"
     },
     "poison-beat": {
       "lines": [
-        { "speaker": "momo", "text": "They will compare notes at the bid. Both of them." },
-        { "speaker": "you", "text": "Food poisoning, texted to a director, is a genre. It is not a sponsor." }
+        { "speaker": "momo", "text": "They will compare notes later tonight. Both of them." },
+        { "speaker": "you", "text": "A fake excuse feels small until two people say it out loud to each other." }
       ],
       "next": "after-text"
     },
@@ -265,8 +260,8 @@
     "taxi-1": {
       "clock": "7:50pm",
       "lines": [
-        { "speaker": "driver", "text": "Both pins are moving. Ken has Sir Loin. Vera has a quiet table. You have a seatbelt." },
-        { "speaker": "momo", "text": "I can hear two meters from here. The basket can hear them too." }
+        { "speaker": "driver", "text": "Both pins are moving. Ken is at the loud table. Vera is at the quiet one. You have a seatbelt." },
+        { "speaker": "momo", "text": "I can hear two meters from the party. The basket can hear them too." }
       ],
       "choices": [
         { "text": "Go to Ken first. He is louder.", "to": "taxi-2" },
@@ -277,12 +272,12 @@
     "taxi-2": {
       "clock": "8:18pm",
       "lines": [
-        { "speaker": "you", "text": "You arrive as the other taxi app dings. Nobody is impressed. The folder stays shut. Her page stays shut." },
-        { "speaker": "momo", "text": "Wave and I will describe a cracker in a tone usually reserved for funerals." }
+        { "speaker": "you", "text": "You arrive as the other taxi dings. Nobody is impressed. You still have not heard either of them." },
+        { "speaker": "momo", "text": "Wave and I will describe a cracker in a tone usually kept for bad poems." }
       ],
       "choices": [
         { "text": "Pay this fare and call the second taxi.", "to": "taxi-3", "fx": { "addMinutes": 8 } },
-        { "text": "Wave through the window like this counts as attendance.", "joke": true, "to": "taxi-3", "fx": { "addMinutes": 8 } },
+        { "text": "Wave through the window like this counts as showing up.", "joke": true, "to": "taxi-3", "fx": { "addMinutes": 8 } },
         { "text": "Sit in the back and reread your own On my way.", "to": "taxi-3" }
       ]
     },
@@ -290,7 +285,7 @@
       "clock": "8:44pm",
       "lines": [
         { "speaker": "momo", "text": "Cracker update: the shy one is gone. The show-off is performing. I am the audience and the threat." },
-        { "speaker": "you", "text": "You are between dinners, which means you are at neither." }
+        { "speaker": "you", "text": "You are between two dates, which means you are on neither." }
       ],
       "choices": [
         { "text": "Tell her to save one cracker.", "to": "taxi-4" },
@@ -301,7 +296,7 @@
     "taxi-4": {
       "clock": "9:08pm",
       "lines": [
-        { "speaker": "you", "text": "9:10 was the check at a table. Your check is a meter, and 9:30 is the pencil." },
+        { "speaker": "you", "text": "9:10 was supposed to be the end of a date. Your date is a meter, and 9:30 is the last minute anyone is waiting." },
         { "speaker": "momo", "text": "An honest text from a tunnel is still a second bubble under On my way." }
       ],
       "choices": [
@@ -313,12 +308,12 @@
     "taxi-check": {
       "clock": "9:22pm",
       "lines": [
-        { "speaker": "driver", "text": "The meter is the only bill. Pocket change, and no director to hand it to." },
+        { "speaker": "driver", "text": "The meter is the only check. No one at either table to split it with." },
         { "speaker": "momo", "text": "Save you a cracker? I am negotiating with myself, and I am winning." }
       ],
       "choices": [
         { "text": "Pay the meter. It is the only bill.", "to": "taxi-photo" },
-        { "text": "Ask the driver to sponsor your pencil.", "joke": true, "to": "taxi-photo" },
+        { "text": "Ask the driver if this counts as a date.", "joke": true, "to": "taxi-photo" },
         { "text": "Text Momo: save me a cracker.", "to": "taxi-photo" }
       ]
     },
@@ -326,43 +321,43 @@
       "clock": "9:32pm",
       "lines": [
         { "speaker": "momo", "text": "9:30 passed in the second taxi. Photo incoming. You should not look, which means you will." },
-        { "speaker": "you", "text": "The pencil is being erased while you watch a basket." }
+        { "speaker": "you", "text": "Both of them stopped waiting while you watched a basket." }
       ],
       "choices": [
         { "text": "Look at the empty basket.", "to": "email" },
         { "text": "Ask if the basket has a plus-one. It does not.", "joke": true, "to": "email" },
-        { "text": "Put the phone face down and face the email.", "to": "email" }
+        { "text": "Put the phone face down and face the last text.", "to": "email" }
       ]
     },
     "toast-who": {
       "clock": "7:52pm",
       "lines": [
-        { "speaker": "you", "text": "You read both, so they believe you about the clock. One of them comes. Milk tea. Ten minutes, not thirty." },
-        { "speaker": "momo", "text": "French toast is a meeting if you do not waste it on a bun." }
+        { "speaker": "you", "text": "You listened to both, so they believe you about the clock. One of them comes. Milk tea. Ten minutes, not thirty." },
+        { "speaker": "momo", "text": "French toast is a date if you do not waste it on a bun." }
       ],
       "choices": [
-        { "text": "Ken comes. Ten minutes on the folder, then he may name the steak.", "to": "toast-ken", "fx": { "set": { "toastHost": "ken", "sorted": true } } },
-        { "text": "Point at the pineapple bun and call the meeting to order.", "joke": true, "to": "toast-blew", "fx": { "set": { "justAte": true, "blewToast": true }, "addMinutes": 10 } },
-        { "text": "Vera comes. Ten minutes on the one page.", "to": "toast-vera", "fx": { "set": { "toastHost": "vera", "heardPlan": true }, "addHearts": 1 } }
+        { "text": "Ken comes. Ten minutes on what he meant, then he may name the steak.", "to": "toast-ken", "fx": { "set": { "toastHost": "ken", "sorted": true } } },
+        { "text": "Point at the pineapple bun and call the date to order.", "joke": true, "to": "toast-blew", "fx": { "set": { "justAte": true, "blewToast": true }, "addMinutes": 10 } },
+        { "text": "Vera comes. Ten minutes on the one real conversation.", "to": "toast-vera", "fx": { "set": { "toastHost": "vera", "heardPlan": true }, "addHearts": 1 } }
       ]
     },
     "toast-ken": {
       "lines": [
-        { "speaker": "ken", "text": "Sticky folder, milk tea, ten minutes. Cold storage and the night ferry are real. The other four are noise. He does not get a second tomahawk." },
-        { "speaker": "you", "text": "You leave Vera her evening. Sir Loin will have to wait, which he will not enjoy." }
+        { "speaker": "ken", "text": "Milk tea. Ten minutes. He saved you a seat, and he is nervous. The rest was volume. He does not get a second steak." },
+        { "speaker": "you", "text": "You leave Vera her evening. The joke will have to wait, which it will not enjoy." }
       ],
       "next": "momo-beat"
     },
     "toast-vera": {
       "lines": [
-        { "speaker": "vera", "text": "She walks the one page over milk tea. It pays more than both real deals if she is in the room. She still has not said hello." },
+        { "speaker": "vera", "text": "Over milk tea she says the one thing. A real conversation, and only if you are in it. She still has not said hello." },
         { "speaker": "momo", "text": "Ten minutes. I am proud and suspicious." }
       ],
       "next": "momo-beat"
     },
     "toast-blew": {
       "lines": [
-        { "speaker": "momo", "text": "You gaveled a bun. Nobody sat. I am describing the crackers in alphabetical order so you suffer." },
+        { "speaker": "momo", "text": "You gaveled a bun. Nobody sat. I am describing the crackers so you suffer." },
         { "speaker": "you", "text": "Pineapple bun. Milk tea. The ten minutes leave without you." }
       ],
       "next": "momo-beat"
@@ -371,7 +366,7 @@
       "clock": "7:55pm",
       "lines": [
         { "speaker": "you", "text": "Nobody comes. Pineapple bun. The French toast text is still on read." },
-        { "speaker": "momo", "text": "Cracker one is shy. Cracker two is showing off. Cracker three left with a director who is not you. I can keep going." }
+        { "speaker": "momo", "text": "Cracker one is shy. Cracker two is showing off. Cracker three left with a person who is not you. I can keep going." }
       ],
       "choices": [
         { "text": "Chew, and regret in silence.", "to": "momo-beat" },
@@ -382,24 +377,24 @@
     "ken-door": {
       "clock": "7:48pm",
       "lines": [
-        { "speaker": "ken", "text": "Sir Loin arrived before you did. The folder is sticky. Ken is already laughing." },
-        { "speaker": "momo", "text": "If you become a side dish I will mention it at the bid." }
+        { "speaker": "ken", "text": "He ordered before you sat down. The laugh is already going. Sir Loin has a chair." },
+        { "speaker": "momo", "text": "If you become the side dish I will mention it at the party." }
       ],
       "choices": [
-        { "text": "Sit down before he knights the steak again.", "to": "ken-arrive" },
+        { "text": "Sit down before the bit eats the hour.", "to": "ken-arrive" },
         { "text": "Ask the waiter to introduce you to Sir Loin.", "joke": true, "to": "ken-arrive", "fx": { "addMinutes": 8, "addStamps": 1 } },
-        { "text": "Put a napkin on the folder.", "to": "ken-arrive" }
+        { "text": "Put your phone face down.", "to": "ken-arrive" }
       ]
     },
     "ken-arrive": {
       "lines": [
-        { "speaker": "ken", "text": "Six deals. One name. He wants the name first." },
-        { "speaker": "you", "text": "The folder waits under the sauce like it is shy." }
+        { "speaker": "ken", "text": "Six things I wanted to say. One of them is the steak. I want to start there." },
+        { "speaker": "you", "text": "The true things are under the joke, if you ask." }
       ],
       "choices": [
-        { "text": "Name him after we sort the folder.", "to": "ken-sort-check" },
-        { "text": "Sir Loin the Second. Now hand me all six.", "joke": true, "to": "ken-armful", "fx": { "set": { "armful": true }, "addStamps": 1, "addMinutes": 12 } },
-        { "text": "Let him order the second tomahawk and talk about gym.", "to": "ken-gym", "fx": { "set": { "justAte": true }, "addMinutes": 10 } }
+        { "text": "Tell me the real part after the name.", "to": "ken-sort-check" },
+        { "text": "Sir Loin the Second. Now tell me all six.", "joke": true, "to": "ken-armful", "fx": { "set": { "armful": true }, "addStamps": 1, "addMinutes": 12 } },
+        { "text": "Let him order again and talk about the gym.", "to": "ken-gym", "fx": { "set": { "justAte": true }, "addMinutes": 10 } }
       ]
     },
     "ken-sort-check": {
@@ -411,134 +406,134 @@
     },
     "ken-sorted": {
       "lines": [
-        { "speaker": "you", "text": "You pull two real deals out of the sauce: cold storage, and the night ferry. Four noise pages go under the bread plate." },
-        { "speaker": "ken", "text": "He looks betrayed, then hungry, then fine. Sir Loin can be named after the work." }
+        { "speaker": "you", "text": "Two things were true. He saved you a seat. He is nervous, and the rest is cover." },
+        { "speaker": "ken", "text": "He looks caught, then glad, then hungry. The steak can be named after that." }
       ],
       "choices": [
-        { "text": "Read the two real deals back to him.", "to": "momo-beat" },
-        { "text": "Ask if Sir Loin gets a producer credit.", "joke": true, "to": "momo-beat", "fx": { "addStamps": 1, "addMinutes": 8 } },
-        { "text": "Close the folder. Your hands are shiny.", "to": "momo-beat" }
+        { "text": "Say the two true things back to him.", "to": "momo-beat" },
+        { "text": "Ask if Sir Loin gets to walk you out.", "joke": true, "to": "momo-beat", "fx": { "addStamps": 1, "addMinutes": 8 } },
+        { "text": "Stop while you still know which part was real.", "to": "momo-beat" }
       ]
     },
     "ken-need-ten": {
       "lines": [
-        { "speaker": "ken", "text": "You did not read. He will talk about the steak until the ice melts. The folder stays a prop." },
-        { "speaker": "momo", "text": "Ten minutes, or you are a side dish. I do not make the rules. I do enjoy them." }
+        { "speaker": "ken", "text": "You did not listen ahead of time, so he stays inside the bit. The true things do not get a turn." },
+        { "speaker": "momo", "text": "Ten honest minutes, or you are a side dish. I do not make the rules. I do enjoy them." }
       ],
       "choices": [
-        { "text": "Hold the folder shut until he gives you ten minutes.", "to": "ken-sorted-late", "fx": { "set": { "sorted": true }, "addMinutes": 20 } },
-        { "text": "Knight the steak and take all six anyway.", "joke": true, "to": "ken-armful", "fx": { "set": { "armful": true }, "addStamps": 1, "addMinutes": 12 } },
-        { "text": "Let him order. You came hungry.", "to": "ken-gym", "fx": { "set": { "justAte": true } } }
+        { "text": "Ask him to drop the bit for ten minutes.", "to": "ken-sorted-late", "fx": { "set": { "sorted": true }, "addMinutes": 20 } },
+        { "text": "Laugh, and take all six stories anyway.", "joke": true, "to": "ken-armful", "fx": { "set": { "armful": true }, "addStamps": 1, "addMinutes": 12 } },
+        { "text": "Let him keep talking. You came hungry.", "to": "ken-gym", "fx": { "set": { "justAte": true } } }
       ]
     },
     "ken-sorted-late": {
       "lines": [
-        { "speaker": "ken", "text": "He sighs and gives you ten minutes. Two deals are real. Four are noise. The steak can wait, and it hates that." },
-        { "speaker": "you", "text": "Cold storage. Night ferry. You leave the rest in the sauce, on purpose." }
+        { "speaker": "ken", "text": "He sighs and gives you ten minutes. He saved you a seat. He was nervous. The steak can wait, and it hates that." },
+        { "speaker": "you", "text": "You leave the other four stories on the table, on purpose." }
       ],
       "next": "momo-beat"
     },
     "ken-armful": {
       "lines": [
-        { "speaker": "ken", "text": "The room laughs. All six land in your arms. You do not know which two are real." },
-        { "speaker": "momo", "text": "You have a folder and a stamp. I have crackers. We are not the same." }
+        { "speaker": "ken", "text": "The table laughs. All six stories land on you. You do not know which two he meant." },
+        { "speaker": "momo", "text": "You have a stamp and a show. I have crackers. We are not the same." }
       ],
       "choices": [
-        { "text": "Smile like this was diligence.", "to": "momo-beat" },
-        { "text": "Name the sauce stain Deal Seven.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
-        { "text": "Don't open them. Opening is how you get responsible.", "to": "momo-beat" }
+        { "text": "Smile like this was the date.", "to": "momo-beat" },
+        { "text": "Name the sauce stain story number seven.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
+        { "text": "Don't ask which part was real.", "to": "momo-beat" }
       ]
     },
     "ken-gym": {
       "lines": [
-        { "speaker": "momo", "text": "You went to a meeting and became a side dish." },
-        { "speaker": "ken", "text": "Second tomahawk. Gym. Sir Loin approves. The folder does not get a turn." }
+        { "speaker": "momo", "text": "You went on a date and became a side dish." },
+        { "speaker": "ken", "text": "Another steak. A gym story. Sir Loin approves. The nervous part never gets said." }
       ],
       "choices": [
-        { "text": "Laugh, and remember the pencil.", "to": "momo-beat" },
-        { "text": "Ask the steak for career advice.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
+        { "text": "Laugh, and remember you still have to choose.", "to": "momo-beat" },
+        { "text": "Ask the steak for relationship advice.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
         { "text": "Nod through the gym story.", "to": "momo-beat" }
       ]
     },
     "vera-door": {
       "clock": "7:48pm",
       "lines": [
-        { "speaker": "vera", "text": "A quiet bar. Sparkling water. One page on the table. She has not said hello." },
+        { "speaker": "vera", "text": "A quiet table. Sparkling water. She has not said hello." },
         { "speaker": "momo", "text": "Match her volume or I will do it for you, badly." }
       ],
       "choices": [
         { "text": "Sit. Wait. Match her volume.", "to": "vera-table" },
-        { "text": "Almost order the loudest thing, then don't.", "joke": true, "to": "vera-table", "fx": { "addMinutes": 6 } },
-        { "text": "Nod at the page like you already respect it.", "to": "vera-table" }
+        { "text": "Almost say the loudest compliment, then don't.", "joke": true, "to": "vera-table", "fx": { "addMinutes": 6 } },
+        { "text": "Nod like you already know what she meant.", "to": "vera-table" }
       ]
     },
     "vera-table": {
       "lines": [
-        { "speaker": "vera", "text": "She slides one page across and waits." },
+        { "speaker": "vera", "text": "She waits. The real conversation does not start itself." },
         { "speaker": "momo", "text": "This is the part where people mention her face. Don't." }
       ],
       "choices": [
-        { "text": "Walk me through this.", "to": "vera-walk", "fx": { "set": { "heardPlan": true }, "addHearts": 1 } },
-        { "text": "Momo says the crackers are free for guests. True or false.", "joke": true, "to": "vera-cracker", "fx": { "addHearts": 1, "set": { "crackerAsk": true } } },
-        { "text": "You look expensive.", "to": "vera-brochure", "fx": { "set": { "looksFirst": true, "veraGrey": true }, "grey": ["vera"] } }
+        { "text": "Tell me what you meant.", "to": "vera-walk", "fx": { "set": { "heardPlan": true }, "addHearts": 1 } },
+        { "text": "Momo says the crackers are free if I bring a date. True or false.", "joke": true, "to": "vera-cracker", "fx": { "addHearts": 1, "set": { "crackerAsk": true } } },
+        { "text": "You look really nice.", "to": "vera-brochure", "fx": { "set": { "looksFirst": true, "veraGrey": true }, "grey": ["vera"] } }
       ]
     },
     "vera-walk": {
       "clock": "8:08pm",
       "lines": [
-        { "speaker": "vera", "text": "She walks the page. One plan. It pays more than both of Ken's real deals if she is in the room." },
-        { "speaker": "you", "text": "The plus-one is still alive. She has still not said hello." }
+        { "speaker": "vera", "text": "She says it once. One real conversation. It only counts if you are here for it, not for the voice note, not for how she looks." },
+        { "speaker": "you", "text": "She might still leave with you. She has not said hello." }
       ],
       "choices": [
-        { "text": "Ask what the number is if she is not in the room.", "to": "momo-beat" },
-        { "text": "Ask if the page has a name.", "joke": true, "to": "momo-beat" },
+        { "text": "Ask what happens if you only liked the voice note.", "to": "momo-beat" },
+        { "text": "Ask if the evening has a name.", "joke": true, "to": "momo-beat" },
         { "text": "Stop talking while you are ahead.", "to": "momo-beat" }
       ]
     },
     "vera-cracker": {
       "lines": [
-        { "speaker": "vera", "text": "She almost smiles. The plan stays closed." },
-        { "speaker": "momo", "text": "False, by the way. I am the guest of the crackers. You are not." }
+        { "speaker": "vera", "text": "She almost smiles. The real conversation stays closed." },
+        { "speaker": "momo", "text": "False, by the way. The crackers already have a date. It is me." }
       ],
       "choices": [
-        { "text": "Ask her to walk the page. Properly this time.", "to": "vera-walk-short", "require": { "clockBefore": "9:00pm" }, "fx": { "set": { "heardPlan": true }, "addHearts": 1 } },
+        { "text": "Ask what she meant. Properly this time.", "to": "vera-walk-short", "require": { "clockBefore": "9:00pm" }, "fx": { "set": { "heardPlan": true }, "addHearts": 1 } },
         { "text": "Ask about the crackers again.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
-        { "text": "Let the smile be the whole meeting.", "to": "momo-beat" }
+        { "text": "Let the smile be the whole date.", "to": "momo-beat" }
       ]
     },
     "vera-walk-short": {
       "lines": [
-        { "speaker": "vera", "text": "Three sentences. For her, that is a speech. The page pays if she is in the room." },
-        { "speaker": "you", "text": "You asked. The plus-one is still alive." }
+        { "speaker": "vera", "text": "Three sentences. For her, that is a speech. She wanted you in the conversation, not in the performance." },
+        { "speaker": "you", "text": "You asked. She might still leave with you." }
       ],
       "next": "momo-beat"
     },
     "vera-brochure": {
       "lines": [
-        { "speaker": "vera", "text": "Brochure." },
-        { "speaker": "you", "text": "Check, please. The plus-one leaves with her." }
+        { "speaker": "vera", "text": "That's the face." },
+        { "speaker": "you", "text": "Check, please. She leaves. You noticed the wrong thing." }
       ],
       "next": "momo-beat"
     },
     "vera-empty": {
       "clock": "7:52pm",
       "lines": [
-        { "speaker": "you", "text": "Her water is here. She is not. The page left with her." },
-        { "speaker": "momo", "text": "Her chair is empty. I can see that from table 9." }
+        { "speaker": "you", "text": "Her water is here. She is not. The conversation left with her." },
+        { "speaker": "momo", "text": "Her chair is empty. I can see that from the party." }
       ],
       "choices": [
         { "text": "Sit with the empty chair anyway.", "to": "momo-beat" },
         { "text": "Order two sparkling waters and toast the absence.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
-        { "text": "Leave before the check learns your name.", "to": "momo-beat" }
+        { "text": "Leave before the evening learns your name.", "to": "momo-beat" }
       ]
     },
     "momo-beat": {
       "clock": "8:40pm",
       "lines": [
-        { "speaker": "momo", "text": "Table 9 is still real. The basket is less real than it was. What do I tell the room." }
+        { "speaker": "momo", "text": "The party is still real. The basket is less real than it was. What do I tell them." }
       ],
       "choices": [
-        { "text": "Tell her you are in a meeting.", "to": "check" },
+        { "text": "Tell her you are on a date.", "to": "check" },
         { "text": "Ask which cracker is the guest of honor.", "joke": true, "to": "check", "fx": { "addMinutes": 6 } },
         { "text": "Put the phone face down.", "to": "check" }
       ]
@@ -546,14 +541,14 @@
     "check": {
       "clock": "9:10pm",
       "lines": [
-        { "speaker": "you", "text": "9:10. The check. One line, then the pencil." },
-        { "speaker": "momo", "text": "Sponsor, guest, or a cracker. I am not neutral." }
+        { "speaker": "you", "text": "9:10. The evening is almost over. One line left." },
+        { "speaker": "momo", "text": "Leave with someone, or leave me a cracker. I am not neutral." }
       ],
       "choices": [
-        { "text": "Ask Ken to sponsor the pencil, and owe him Sir Loin forever.", "to": "email", "fx": { "set": { "kenSponsor": true } } },
+        { "text": "Tell Ken the joke can keep you, and mean it.", "to": "email", "fx": { "set": { "kenSponsor": true } } },
         { "text": "Pay your half, say nothing, text Momo \"save me a cracker.\"", "joke": true, "to": "email", "fx": { "set": { "payHalf": true } } },
         {
-          "text": "Ask Vera to put her name on the guest line.",
+          "text": "Ask Vera to leave with you.",
           "to": "cab",
           "require": { "heardPlan": true, "veraGrey": false, "looksFirst": false, "notesCompared": false },
           "fx": { "set": { "askedVera": true } }
@@ -563,36 +558,36 @@
     "cab": {
       "clock": "9:22pm",
       "lines": [
-        { "speaker": "vera", "text": "She is already in a cab. One page in her lap. Still no second sentence." },
+        { "speaker": "vera", "text": "She is already in a cab. She still has not added a second sentence." },
         { "speaker": "momo", "text": "If you add a speech now I will eat the good cracker out of spite." }
       ],
       "choices": [
-        { "text": "Send: the guest line is your name.", "to": "email" },
-        { "text": "Send a photo of milk tea like it is a contract.", "joke": true, "to": "email", "fx": { "addMinutes": 6 } },
+        { "text": "Send: I'm coming with you.", "to": "email" },
+        { "text": "Send a photo of milk tea like it is a confession.", "joke": true, "to": "email", "fx": { "addMinutes": 6 } },
         { "text": "Don't add a second sentence. She respects that.", "to": "email" }
       ]
     },
     "email": {
       "clock": "9:40pm",
       "lines": [
-        { "speaker": "email", "text": "CLOSED BID TONIGHT. The pencil is out of time. Guest: ________." },
-        { "speaker": "momo", "text": "Same email. Your move. I am down to crumbs and opinions." }
+        { "speaker": "you", "text": "9:40. The same two threads. The evening is over. Who did you actually choose." },
+        { "speaker": "momo", "text": "Last text. I am down to crumbs and opinions." }
       ],
       "choices": [
         {
-          "text": "Reply with Vera's name.",
+          "text": "Tell Vera you are with her.",
           "to": "end",
           "require": { "heardPlan": true, "askedVera": true, "veraGrey": false, "looksFirst": false, "notesCompared": false, "doubleBooked": false },
           "fx": { "set": { "plusOne": true } }
         },
-        { "text": "Attach all six photos of the sticky folder and write \"diligence.\"", "joke": true, "to": "period", "require": { "armful": true, "doubleBooked": false }, "fx": { "set": { "diligence": true } } },
-        { "text": "Come alone with whatever you understood.", "to": "end", "fx": { "set": { "cameAlone": true } } }
+        { "text": "Send Ken all six stories and write \"I was listening.\"", "joke": true, "to": "period", "require": { "armful": true, "doubleBooked": false }, "fx": { "set": { "diligence": true } } },
+        { "text": "Go home alone with whatever you understood.", "to": "end", "fx": { "set": { "cameAlone": true } } }
       ]
     },
     "period": {
       "lines": [
-        { "speaker": "host", "text": "." },
-        { "speaker": "momo", "text": "That's a whole paragraph, from him." }
+        { "speaker": "ken", "text": "." },
+        { "speaker": "momo", "text": "That's a whole love letter, from him." }
       ],
       "next": "end"
     },
