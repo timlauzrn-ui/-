@@ -1,35 +1,39 @@
 # 7:30
 
-A short romance for a classroom projector. It is an introduction to decision making. Open `index.html` in any browser. No install, no build.
+A short, classroom-safe romance for a projector. The class plays a male lead. Three heroines stay on screen the whole evening. Open `index.html` in any browser. No install, no build.
 
-One person drives the mouse. Read the line out loud, let the room shout, then click. A full night is about 14 votes and runs 15–20 minutes. Keys 1, 2, and 3 pick the buttons. Space advances a line.
+One person drives the mouse. Read the line out loud, let the room shout, then click. A full night is about 14 votes and runs 15–20 minutes. Keys 1, 2, and 3 pick the buttons. Space advances a line. The name field prints on the invitation.
 
-The name field prints on the last card.
+It is one Friday, 6:40pm to 9:40pm. You can actually show up for one person.
 
-You have one Friday evening and two people who want it. Ken is loud: a photo, a joke, a steak he named Sir Loin. Vera is quiet: four seconds of voice, one real conversation. Momo is already at a party, eating the crackers and giving bad advice. The clock runs from 6:40pm to 9:40pm. Under that clock, the loud thing tends to win.
+## Who is on screen
 
-## On screen the whole time
+- **Momo**, childhood friend. She is already out, live-texting, usually wrong, and she is also a route.
+- **Rin**, loud. She sends the photo and the joke. Laughs cost minutes. You win her by hearing the two true things under the bit: she saved you a seat, and she is nervous.
+- **Vera**, quiet. Four-second voice note: one real conversation, don't perform. One line about her face greys her portrait and kills that route.
 
-- **Clock.** A joke that costs minutes marks the clock.
-- **Ken stamps.** He laughs, and the hour gets shorter.
-- **Vera hearts.** She notices when you listen. One line about her face greys her portrait, and she will not leave with you.
-- **Momo**, in the portrait row and in your ear. When you ask her what they meant, she is funny and wrong.
+The chips are the clock and three affection counts: Momo, Rin, and Vera. Nothing is labeled as the correct choice. The funny line is the middle button when three choices are up. A path dies by portrait, not by a popup. Grey means that girl is gone. A flicker means Rin and Vera will compare your excuse later, and both of those routes die.
 
-Nothing is labeled as the correct choice. The funny line is the middle button when three choices are up. A path dies by portrait, not by a failure popup. Grey means that person is gone. A flicker means both of them will compare your excuse later.
+## The three routes
+
+You open one thread, or you tell all three you are on the way. That reply books every taxi and leaves the guest line blank.
+
+You listen to both, only to the one you opened, or you ask Momo. She will be funny and wrong.
+
+At 7:30 you sit with Rin, with Vera, or at French toast. Toast is a real scene only if you listened. Otherwise you eat alone, and Momo can still be asked to sit down.
+
+The text to the person you stand up is honest, a fake excuse, or an autocorrect "I love you" to the wrong girl. Vera survives that only if her affection is already high.
+
+On the date, ask what she meant, tell a joke, or comment on her face. The face line greys her. At 9:10 you have one line. She says yes only if you listened, you asked, and her portrait is still lit.
 
 ## The last card
 
-The card is the decision, not a score. It shows what you did, where you ended, who is with you, and what you actually heard. Each thing you heard is marked true or noise.
+Every path ends on the same invitation, including the misses. The plot never explains the card. The only thing that changes is the guest line.
 
-| Card | What you did | What you heard | Where you ended | Who is with you |
-| --- | --- | --- | --- | --- |
-| With Vera | You listened | The one real conversation, true | In the cab with her | Vera |
-| Two true things | You sorted the noise | He saved you a seat, and he was nervous | Ken's table, then alone | No one |
-| The whole show | You took the loud parts | Six stories, four of them noise | Still at the loud table | No one |
-| A nice dinner | You liked the surface | You never heard it | A polite goodbye | No one |
-| Two taxis | You tried to keep both | You never heard it | Between them | No one |
+- **Vera, Rin, or Momo** — that route was won.
+- **Blank** — you told everyone you were coming, you took the whole show and never heard her, or you liked the face and the voice and never asked.
 
-The lesson is one line, and it appears only on that card. Time pressure makes a photo, a face, or a joke beat what the person actually said.
+Momo texts one line under the card. Under that, one sentence: time pressure makes the photo, the face, or the joke beat what she said. The next game starts from this invitation.
 
 ## If you edit the night
 

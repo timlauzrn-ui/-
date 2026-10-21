@@ -96,8 +96,9 @@ h1 span {
 }
 
 .chip.clock { color: var(--clock); border-color: #6d5428; }
-.chip.stamps { color: var(--stamp); border-color: #6d2a22; }
-.chip.hearts { color: var(--heart); border-color: #6d3144; }
+.chip.momo { color: var(--momo); border-color: #3e5c3c; }
+.chip.rin { color: #f09a7a; border-color: #6d3a32; }
+.chip.vera { color: var(--heart); border-color: #6d3144; }
 .chip.vote { color: var(--muted); }
 
 .chip.clock.bump::after {
@@ -138,7 +139,7 @@ h1 span {
 }
 
 .portrait[data-who="momo"] .face { border-color: var(--momo); }
-.portrait[data-who="ken"] .face { border-color: var(--ken); }
+.portrait[data-who="rin"] .face { border-color: #e25b4a; }
 .portrait[data-who="vera"] .face { border-color: var(--vera); }
 
 .portrait.talking .face { box-shadow: 0 0 0 4px rgba(240, 195, 106, 0.35); }
@@ -253,6 +254,7 @@ main, .choices, #ending { width: min(68rem, calc(100% - 2rem)); margin: 0 auto; 
 .who { margin: 0.2rem 0 0.8rem; font-size: 1.15rem; }
 
 dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 0 0 0.8rem; }
+dl.invite-guest { grid-template-columns: 1fr; max-width: 18rem; }
 dl div { background: rgba(36, 22, 15, 0.06); border-radius: 0.7rem; padding: 0.55rem 0.7rem; }
 dt {
   font-family: "Avenir Next", "Segoe UI", sans-serif;

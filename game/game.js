@@ -29,7 +29,9 @@
 
   function matches(cond, state) {
     if (!cond) return true;
-    if (cond.heartsAtLeast != null && state.hearts < cond.heartsAtLeast) return false;
+    if (cond.veraAtLeast != null && state.affection.vera < cond.veraAtLeast) return false;
+    if (cond.rinAtLeast != null && state.affection.rin < cond.rinAtLeast) return false;
+    if (cond.momoAtLeast != null && state.affection.momo < cond.momoAtLeast) return false;
     if (cond.clockBefore && state.clock >= parseClock(cond.clockBefore)) return false;
     var key;
     if (cond.not) {
@@ -39,7 +41,7 @@
     }
     for (key in cond) {
       if (!Object.prototype.hasOwnProperty.call(cond, key)) continue;
-      if (key === "heartsAtLeast" || key === "clockBefore" || key === "not") continue;
+      if (key === "veraAtLeast" || key === "rinAtLeast" || key === "momoAtLeast" || key === "clockBefore" || key === "not") continue;
       if (flag(state, key) !== cond[key]) return false;
     }
     return true;
@@ -47,7 +49,7 @@
 
   function fill(text, state) {
     var love = "them";
-    if (state.flags.loveTarget === "ken") love = "Ken";
+    if (state.flags.loveTarget === "rin") love = "Rin";
     if (state.flags.loveTarget === "vera") love = "Vera";
     return String(text)
       .split("{player}").join(state.playerName || "Your name")
@@ -63,29 +65,34 @@
         if (Object.prototype.hasOwnProperty.call(fx.set, key)) state.flags[key] = fx.set[key];
       }
     }
-    if (fx.addHearts) state.hearts += fx.addHearts;
-    if (fx.addStamps) state.stamps += fx.addStamps;
+    if (fx.addAffection) {
+      for (key in fx.addAffection) {
+        if (Object.prototype.hasOwnProperty.call(fx.addAffection, key)) state.affection[key] += fx.addAffection[key];
+      }
+    }
     if (fx.addMinutes) state.clock += fx.addMinutes;
     if (fx.grey) fx.grey.forEach(function (id) { state.grey[id] = true; });
     if (fx.flicker) fx.flicker.forEach(function (id) { state.flicker[id] = true; });
     if (state.flags.veraGrey) state.grey.vera = true;
+    if (state.flags.rinGrey) state.grey.rin = true;
+    if (state.flags.momoGrey) state.grey.momo = true;
     if (state.flags.notesCompared) {
-      state.flicker.ken = true;
+      state.flicker.rin = true;
       state.flicker.vera = true;
     }
   }
 
   function prepStandup(state) {
     var flags = state.flags;
-    if (flags.table === "ken") {
+    if (flags.table === "rin") {
       flags.stoodName = "Vera";
       flags.loveTarget = "vera";
     } else if (flags.table === "vera") {
-      flags.stoodName = "Ken";
-      flags.loveTarget = "ken";
+      flags.stoodName = "Rin";
+      flags.loveTarget = "rin";
     } else {
       flags.stoodName = "both of them";
-      flags.loveTarget = flags.opened === "vera" ? "ken" : "vera";
+      flags.loveTarget = flags.opened === "vera" ? "rin" : "vera";
     }
     return null;
   }
@@ -97,25 +104,23 @@
       flags.readVera = true;
       return "truth-vera";
     }
-    if (flags.opened === "ken") {
-      flags.readKen = true;
-      return "truth-ken";
+    if (flags.opened === "rin") {
+      flags.readRin = true;
+      return "truth-rin";
     }
-    flags.readKen = true;
     flags.readLoud = true;
     return "truth-loud";
   }
 
   function resolveEnding(state) {
     var flags = state.flags;
-    if (flags.plusOne && flags.heardPlan && !flags.veraGrey && !flags.looksFirst && !flags.notesCompared && !flags.doubleBooked) {
-      return "plus-one";
-    }
-    if (flags.doubleBooked) return "two-taxis";
-    if (flags.armful && !flags.sorted) return "armful";
-    if (flags.sorted) return "two-real";
-    if (flags.opened === "vera" && !flags.heardPlan && !flags.readBoth) return "nice";
-    return "nice";
+    var wonVera = flags.guest === "vera" && flags.heardVera && flags.askedVera && !flags.veraGrey && !flags.looksFirst && !flags.notesCompared && !flags.doubleBooked;
+    var wonRin = flags.guest === "rin" && flags.sorted && flags.askedRin && !flags.armful && !flags.rinGrey && !flags.notesCompared && !flags.doubleBooked;
+    var wonMomo = flags.guest === "momo" && flags.askedMomo && state.affection.momo >= 2 && !flags.momoLied && !flags.notesCompared && !flags.doubleBooked;
+    if (wonVera) return "vera";
+    if (wonRin) return "rin";
+    if (wonMomo) return "momo";
+    return "blank";
   }
 
   function loadout(story, state) {
@@ -124,13 +129,7 @@
       ending: state.endingId,
       title: card.title,
       player: state.playerName || "Your name",
-      whatYouDid: card.attention,
-      heard: card.heard,
-      where: card.where,
-      withYou: card.withYou === "________" ? "" : card.withYou,
-      veraHere: !!card.veraPresent,
-      kenStamps: state.stamps,
-      veraHearts: state.hearts
+      guest: card.guest === "________" ? "" : card.guest
     };
   }
 
@@ -140,13 +139,12 @@
     function blank() {
       return {
         playerName: "Your name",
-        hearts: 0,
-        stamps: 0,
+        affection: { momo: 0, rin: 0, vera: 0 },
         clock: parseClock("6:40pm"),
         votes: 0,
         flags: {},
-        grey: { momo: false, ken: false, vera: false },
-        flicker: { momo: false, ken: false, vera: false },
+        grey: { momo: false, rin: false, vera: false },
+        flicker: { momo: false, rin: false, vera: false },
         sceneId: null,
         line: 0,
         phase: "lines",
@@ -282,11 +280,10 @@
     function view() {
       var base = {
         clock: formatClock(state.clock),
-        hearts: state.hearts,
-        stamps: state.stamps,
+        affection: { momo: state.affection.momo, rin: state.affection.rin, vera: state.affection.vera },
         votes: state.votes,
-        grey: { momo: state.grey.momo, ken: state.grey.ken, vera: state.grey.vera },
-        flicker: { momo: state.flicker.momo, ken: state.flicker.ken, vera: state.flicker.vera },
+        grey: { momo: state.grey.momo, rin: state.grey.rin, vera: state.grey.vera },
+        flicker: { momo: state.flicker.momo, rin: state.flicker.rin, vera: state.flicker.vera },
         minuteBump: state.minuteBump,
         playerName: state.playerName
       };
@@ -359,26 +356,25 @@
     var endingEl = document.getElementById("ending");
     var stage = document.getElementById("stage");
     var clockEl = document.getElementById("clock");
-    var stampsEl = document.getElementById("stamps");
-    var heartsEl = document.getElementById("hearts");
     var voteEl = document.getElementById("vote-count");
     var nameEl = document.getElementById("player-name");
     var portraits = {
       momo: document.querySelector('[data-who="momo"]'),
-      ken: document.querySelector('[data-who="ken"]'),
+      rin: document.querySelector('[data-who="rin"]'),
       vera: document.querySelector('[data-who="vera"]')
     };
-    var names = { momo: "Momo", ken: "Ken", vera: "Vera", you: "You", email: "Mail", host: "Host", driver: "Driver" };
+    var names = { momo: "Momo", rin: "Rin", vera: "Vera", you: "You", driver: "Driver" };
 
     function paint() {
       var snapshot = game.view();
       clockEl.textContent = snapshot.clock;
-      stampsEl.textContent = "Ken stamps " + snapshot.stamps;
-      heartsEl.textContent = "Vera hearts " + snapshot.hearts;
+      document.getElementById("aff-momo").textContent = "Momo " + snapshot.affection.momo;
+      document.getElementById("aff-rin").textContent = "Rin " + snapshot.affection.rin;
+      document.getElementById("aff-vera").textContent = "Vera " + snapshot.affection.vera;
       clockEl.classList.toggle("bump", !!snapshot.minuteBump);
       if (snapshot.minuteBump) clockEl.setAttribute("data-bump", "+" + snapshot.minuteBump + " min");
       else clockEl.removeAttribute("data-bump");
-      ["momo", "ken", "vera"].forEach(function (id) {
+      ["momo", "rin", "vera"].forEach(function (id) {
         portraits[id].classList.toggle("grey", !!snapshot.grey[id]);
         portraits[id].classList.toggle("flicker", !!snapshot.flicker[id] && !snapshot.grey[id]);
         portraits[id].classList.toggle("talking", snapshot.phase !== "ending" && snapshot.speaker === id);
@@ -423,27 +419,17 @@
 
     function renderCard(snapshot) {
       var card = snapshot.card;
-      var heard = card.heard.length
-        ? card.heard.map(function (item) {
-          var label = item.quality === "real" ? "True" : "Noise";
-          return "<li><span class=\"quality " + item.quality + "\">" + label + "</span> " + escapeHtml(item.name) + "</li>";
-        }).join("")
-        : "<li class=\"none\">You never heard it.</li>";
-      var basket = snapshot.endingId === "two-taxis" ? "<p class=\"basket\">The basket is empty.</p>" : "";
       endingEl.innerHTML =
         "<article class=\"invite\">" +
-        "<p class=\"kicker\">The decision</p>" +
+        "<p class=\"kicker\">Invitation</p>" +
         "<h2>" + escapeHtml(card.title) + "</h2>" +
         "<p class=\"who\">" + escapeHtml(snapshot.playerName) + "</p>" +
-        "<dl>" +
-        "<div><dt>What you did</dt><dd>" + escapeHtml(card.attention) + "</dd></div>" +
-        "<div><dt>Where you ended</dt><dd>" + escapeHtml(card.where) + "</dd></div>" +
-        "<div><dt>Who is with you</dt><dd>" + escapeHtml(card.withYou) + "</dd></div>" +
+        "<dl class=\"invite-guest\">" +
+        "<div><dt>Guest</dt><dd>" + escapeHtml(card.guest) + "</dd></div>" +
         "</dl>" +
-        "<h3>What you heard</h3><ul class=\"plans\">" + heard + "</ul>" +
         "<p class=\"phone\"><span>Momo</span> " + escapeHtml(card.momo) + "</p>" +
-        basket +
         "<p class=\"research\">" + escapeHtml(snapshot.research) + "</p>" +
+        "<p class=\"handoff\">The next game starts from this invitation.</p>" +
         "<button type=\"button\" id=\"again\">Play again</button>" +
         "</article>";
       document.getElementById("again").addEventListener("click", function () {
