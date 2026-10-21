@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>7:30</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>7:30 <span>One evening</span></h1>
+    <label class="pencil">Name
+      <input id="player-name" value="Your name" maxlength="32" autocomplete="off">
+    </label>
+    <div class="chips">
+      <div id="clock" class="chip clock">6:40pm</div>
+      <div id="aff-momo" class="chip momo">Momo 0</div>
+      <div id="aff-rin" class="chip rin">Rin 0</div>
+      <div id="aff-vera" class="chip vera">Vera 0</div>
+      <div id="vote-count" class="chip vote">Next vote 1</div>
+    </div>
+  </header>
+  <section class="portraits" aria-label="Portraits">
+    <div class="portrait" data-who="momo">
+      <div class="face" aria-hidden="true">
+        <svg viewBox="0 0 80 80">
+          <circle cx="40" cy="42" r="24" fill="#f0c7a2"/>
+          <circle cx="18" cy="28" r="8" fill="#3d2a22"/>
+          <circle cx="62" cy="28" r="8" fill="#3d2a22"/>
+          <path d="M28 48c3 6 21 6 24 0" fill="none" stroke="#3d2a22" stroke-width="2"/>
+          <circle cx="32" cy="40" r="2" fill="#3d2a22"/>
+          <circle cx="48" cy="40" r="2" fill="#3d2a22"/>
+          <rect x="54" y="54" width="14" height="8" rx="2" fill="#e6c36a"/>
+        </svg>
+      </div>
+      <div class="name">Momo</div>
+    </div>
+    <div class="portrait" data-who="rin">
+      <div class="face" aria-hidden="true">
+        <svg viewBox="0 0 80 80">
+          <path d="M16 40c4-22 44-24 50 2v10H16z" fill="#e25b4a"/>
+          <circle cx="40" cy="46" r="18" fill="#f3c3a8"/>
+          <circle cx="33" cy="46" r="2" fill="#3d2a22"/>
+          <circle cx="47" cy="46" r="2" fill="#3d2a22"/>
+          <path d="M32 54c3 5 13 5 16 0" fill="none" stroke="#3d2a22" stroke-width="2"/>
+          <rect x="52" y="54" width="12" height="10" rx="1" fill="#f4e7d2" stroke="#3d2a22"/>
+        </svg>
+      </div>
+      <div class="name">Rin</div>
+    </div>
+    <div class="portrait" data-who="vera">
+      <div class="face" aria-hidden="true">
+        <svg viewBox="0 0 80 80">
+          <path d="M22 34c2-14 34-14 36 2v28H22z" fill="#2a211c"/>
+          <circle cx="40" cy="46" r="16" fill="#f2d2b8"/>
+          <path d="M30 50h20" stroke="#3d2a22" stroke-width="2"/>
+          <circle cx="33" cy="44" r="1.7" fill="#3d2a22"/>
+          <circle cx="47" cy="44" r="1.7" fill="#3d2a22"/>
+          <rect x="50" y="58" width="12" height="14" fill="#f4e7d2" stroke="#3d2a22"/>
+        </svg>
+      </div>
+      <div class="name">Vera</div>
+    </div>
+  </section>
+  <main id="stage">
+    <p class="speaker" id="speaker"></p>
+    <p class="line" id="line"></p>
+    <button id="next" type="button">Next</button>
+  </main>
+  <div id="choices" class="choices" hidden></div>
+  <section id="ending" hidden></section>
+  <script type="application/json" id="story-data">
+{
+  "title": "7:30",
+  "start": "cold",
+  "research": "Time pressure makes the photo, the face, or the joke beat what she said.",
+  "endings": {
+    "vera": {
+      "title": "You're invited",
+      "guest": "Vera",
+      "momo": "She said hi. I hid the crackers."
+    },
+    "rin": {
+      "title": "You're invited",
+      "guest": "Rin",
+      "momo": "She stopped laughing long enough to say yes."
+    },
+    "momo": {
+      "title": "You're invited",
+      "guest": "Momo",
+      "momo": "You asked. I'm coming. Leave the crackers alone."
+    },
+    "blank": {
+      "title": "You're invited",
+      "guest": "________",
+      "momo": "The guest line is empty. I ate the crackers."
+    }
+  },
+  "scenes": {
+    "cold": {
+      "clock": "6:40pm",
+      "lines": [
+        { "speaker": "you", "text": "Friday, 6:40. Three girls. One evening. You can actually show up for one of them." },
+        { "speaker": "momo", "text": "I'm already out. Crackers are finite. If you vanish, I will narrate your downfall to the group chat." }
+      ],
+      "choices": [
+        { "text": "Read both names and don't answer yet.", "to": "pings" },
+        { "text": "Type Momo as your date, then delete it.", "joke": true, "to": "pings", "fx": { "addAffection": { "momo": 1 } } },
+        { "text": "Put {player} in the chat, and then say nothing.", "to": "pings" }
+      ]
+    },
+    "pings": {
+      "clock": "6:58pm",
+      "lines": [
+        { "speaker": "rin", "text": "Six photos. The first one is her, laughing too close to the camera. The caption is just: COME." },
+        { "speaker": "vera", "text": "Four seconds of voice. Quiet table. One real conversation. Don't perform." },
+        { "speaker": "momo", "text": "The loud one or the quiet one. I am chewing, so decide like a person." }
+      ],
+      "choices": [
+        { "text": "Open Rin's photo.", "to": "photo", "fx": { "set": { "opened": "rin" } } },
+        { "text": "Reply to all three: \"On my way.\"", "joke": true, "to": "coffin", "fx": { "set": { "doubleBooked": true, "opened": "neither" } } },
+        { "text": "Play Vera's voice note twice.", "to": "note", "fx": { "set": { "opened": "vera" }, "addAffection": { "vera": 1 } } }
+      ]
+    },
+    "photo": {
+      "lines": [
+        { "speaker": "you", "text": "Under the laughing photo, six bubbles. Two sound like she means them. Four are the bit." },
+        { "speaker": "momo", "text": "If you fall in love with a selfie, I will allow it and I will never let it go." }
+      ],
+      "choices": [
+        { "text": "Count which lines sound true.", "to": "read" },
+        { "text": "Send the photo to Momo before you answer Rin.", "joke": true, "to": "read", "fx": { "addAffection": { "momo": 1 }, "addMinutes": 6 } },
+        { "text": "Close it. You saw a face, not a sentence.", "to": "read" }
+      ]
+    },
+    "note": {
+      "addMinutes": 4,
+      "lines": [
+        { "speaker": "vera", "text": "You play it again. Quiet table. One real conversation. Don't perform." },
+        { "speaker": "momo", "text": "You listened like it was a spell. She has still not said hello." }
+      ],
+      "choices": [
+        { "text": "Save it. You'll want the exact words.", "to": "read" },
+        { "text": "Forward it to Momo. She will narrate it badly.", "joke": true, "to": "read", "fx": { "addAffection": { "momo": 1 } } },
+        { "text": "Listen for \"don't perform,\" then stop.", "to": "read" }
+      ]
+    },
+    "coffin": {
+      "lines": [
+        { "speaker": "momo", "text": "Coffin emoji. You told three girls you were on the way. That is not a choice. That is a parade." },
+        { "speaker": "you", "text": "Three taxis accept at the same time. You cannot be in all of them." }
+      ],
+      "choices": [
+        { "text": "Tell Momo you'll explain later.", "to": "read" },
+        { "text": "Send a fourth On my way, to the crackers.", "joke": true, "to": "read", "fx": { "addMinutes": 6 } },
+        { "text": "Watch all three typing bubbles.", "to": "read" }
+      ]
+    },
+    "read": {
+      "clock": "7:06pm",
+      "lines": [
+        { "speaker": "momo", "text": "The curb is right there. So is a taxi. So am I, and I am chewing." },
+        { "speaker": "you", "text": "Do you actually listen." }
+      ],
+      "choices": [
+        { "text": "Sit on the curb and listen to both. A taxi honks the whole time.", "to": "truth-both", "fx": { "set": { "readBoth": true }, "addAffection": { "vera": 1 }, "addMinutes": 18 } },
+        { "text": "Ask Momo what they meant.", "joke": true, "to": "truth-momo", "fx": { "set": { "momoLied": true } } },
+        { "text": "Listen only to whoever you opened.", "op": "readOpened" }
+      ]
+    },
+    "truth-both": {
+      "lines": [
+        { "speaker": "you", "text": "Rin meant two things. She saved you a seat, and she is nervous. The extra photos, the nickname, the bit: noise." },
+        { "speaker": "you", "text": "Vera meant one thing. A real conversation, and only if you are actually there." },
+        { "speaker": "momo", "text": "The taxi is filing a complaint. I respect its boundaries." }
+      ],
+      "choices": [
+        { "text": "Keep what they meant in your head.", "to": "table" },
+        { "text": "Honk back. The taxi started it.", "joke": true, "to": "table", "fx": { "addMinutes": 8 } },
+        { "text": "Stand up. Text nobody.", "to": "table" }
+      ]
+    },
+    "truth-vera": {
+      "lines": [
+        { "speaker": "you", "text": "You heard Vera. One real conversation, if you show up as yourself. Rin's photos stay closed." },
+        { "speaker": "momo", "text": "You know her sentence and none of Rin's. Romantic already." }
+      ],
+      "choices": [
+        { "text": "Hold onto what she said.", "to": "table" },
+        { "text": "Ask Momo if quiet means mysterious. She says movie.", "joke": true, "to": "table", "fx": { "set": { "momoLied": true } } },
+        { "text": "Close it before you start performing.", "to": "table" }
+      ]
+    },
+    "truth-rin": {
+      "lines": [
+        { "speaker": "you", "text": "You only opened Rin. Two lines might be true. You cannot tell which, and you never played Vera." },
+        { "speaker": "momo", "text": "The photo is still the loudest person in your phone." }
+      ],
+      "choices": [
+        { "text": "Remember the photo is loud, not the whole of her.", "to": "table" },
+        { "text": "Salute the selfie and move on.", "joke": true, "to": "table", "fx": { "addMinutes": 6, "addAffection": { "rin": 1 } } },
+        { "text": "Tell yourself you will know it when you see her.", "to": "table" }
+      ]
+    },
+    "truth-loud": {
+      "lines": [
+        { "speaker": "you", "text": "You never opened either of them, so the laughing photo is all you have. It is not a feeling." },
+        { "speaker": "momo", "text": "Bold. Incorrect. The loud thing won, which is the whole lesson." }
+      ],
+      "choices": [
+        { "text": "Admit the photo beat the person.", "to": "table" },
+        { "text": "Defend the selfie. It had good lighting.", "joke": true, "to": "table" },
+        { "text": "Put the phone away and walk.", "to": "table" }
+      ]
+    },
+    "truth-momo": {
+      "lines": [
+        { "speaker": "momo", "text": "Rin is basically a firework with a train pass. Vera is basically a movie where two people almost talk. Sauce on my phone, so this is official." },
+        { "speaker": "you", "text": "You walk in confident, and wrong." }
+      ],
+      "choices": [
+        { "text": "Thank her. Walk in confident.", "to": "table" },
+        { "text": "Ask which movie. She says the one with the boat.", "joke": true, "to": "table", "fx": { "addMinutes": 6 } },
+        { "text": "Suspect she is wrong. Go anyway.", "to": "table" }
+      ]
+    },
+    "table": {
+      "clock": "7:30pm",
+      "lines": [
+        { "speaker": "momo", "text": "7:30. You still only have one body. Where do you sit." },
+        { "speaker": "you", "text": "Rin has the loud table. Vera has the quiet one. The cha chaan teng has French toast and no patience." }
+      ],
+      "choices": [
+        { "text": "Rin's table. She is already laughing.", "to": "prep-standup", "fx": { "set": { "table": "rin" } } },
+        { "text": "Cha chaan teng. Text both: French toast. Thirty minutes. Tell them it's a date.", "joke": true, "to": "prep-standup", "fx": { "set": { "table": "toast" }, "addMinutes": 6 } },
+        { "text": "Vera's quiet table.", "to": "prep-standup", "fx": { "set": { "table": "vera" } } }
+      ]
+    },
+    "prep-standup": { "op": "prepStandup", "next": "standup" },
+    "standup": {
+      "clock": "7:36pm",
+      "lines": [
+        { "speaker": "you", "text": "You are about to text {stoodName}. One evening. This message decides who still has a route." },
+        { "speaker": "momo", "text": "Type slow. I can feel a bad decision from here." }
+      ],
+      "choices": [
+        { "text": "\"I can only be in one place.\"", "to": "after-text", "fx": { "set": { "honest": true } } },
+        { "text": "You meant \"Got held up.\" You sent \"I love you.\"", "joke": true, "to": "love-resolve" },
+        { "text": "\"Food poisoning.\"", "to": "poison-beat", "fx": { "set": { "notesCompared": true }, "flicker": ["rin", "vera"] } }
+      ]
+    },
+    "love-resolve": {
+      "route": [
+        { "if": { "loveTarget": "vera", "veraAtLeast": 2 }, "to": "love-bold", "fx": { "set": { "veraBold": true } } },
+        { "if": { "loveTarget": "vera" }, "to": "love-grey", "fx": { "grey": ["vera"], "set": { "veraGrey": true } } },
+        { "to": "love-rin", "fx": { "addAffection": { "rin": 1 }, "addMinutes": 12, "set": { "rinLaughed": true } } }
+      ]
+    },
+    "love-bold": {
+      "lines": [
+        { "speaker": "vera", "text": "Bold. Still come as yourself." },
+        { "speaker": "momo", "text": "She answered a love note sent by accident. I am offended on behalf of effort." }
+      ],
+      "next": "after-text"
+    },
+    "love-grey": {
+      "lines": [
+        { "speaker": "momo", "text": "You sent \"I love you\" to the wrong girl. Vera does not answer." },
+        { "speaker": "you", "text": "No second text. Her route goes quiet." }
+      ],
+      "next": "after-text"
+    },
+    "love-rin": {
+      "lines": [
+        { "speaker": "rin", "text": "She screenshots the \"I love you\" and laughs so hard the table hears it. The hour gets shorter." },
+        { "speaker": "momo", "text": "Affection for chaos. Minutes for the bit. Classic Rin." }
+      ],
+      "next": "after-text"
+    },
+    "poison-beat": {
+      "lines": [
+        { "speaker": "momo", "text": "They will compare that excuse later. Both of them. I would not want to be the group chat." },
+        { "speaker": "you", "text": "A fake sick text feels small until two girls say it out loud to each other." }
+      ],
+      "next": "after-text"
+    },
+    "after-text": {
+      "route": [
+        { "if": { "doubleBooked": true }, "to": "taxi-1" },
+        { "if": { "table": "toast", "readBoth": true }, "to": "toast-who" },
+        { "if": { "table": "toast" }, "to": "toast-alone", "fx": { "set": { "justAte": true } } },
+        { "if": { "table": "rin" }, "to": "rin-door" },
+        { "if": { "table": "vera", "veraGrey": true }, "to": "vera-empty" },
+        { "to": "vera-door" }
+      ]
+    },
+    "taxi-1": {
+      "clock": "7:50pm",
+      "lines": [
+        { "speaker": "driver", "text": "Every pin is moving. Rin is at the loud table. Vera is at the quiet one. Momo is watching you fail in real time." },
+        { "speaker": "momo", "text": "You cannot collect girls like crackers. I would know. I collect crackers." }
+      ],
+      "choices": [
+        { "text": "Go to Rin first. She is louder.", "to": "taxi-2" },
+        { "text": "Tell the driver to follow whoever texts next.", "joke": true, "to": "taxi-2", "fx": { "addMinutes": 10 } },
+        { "text": "Go to Vera first. She uses fewer words.", "to": "taxi-2" }
+      ]
+    },
+    "taxi-2": {
+      "clock": "8:18pm",
+      "lines": [
+        { "speaker": "you", "text": "You arrive as another taxi dings. Nobody is impressed. You still have not heard either of them." },
+        { "speaker": "momo", "text": "Wave through the glass and I will describe a cracker with funeral dignity." }
+      ],
+      "choices": [
+        { "text": "Pay this fare and call the next taxi.", "to": "taxi-3", "fx": { "addMinutes": 8 } },
+        { "text": "Wave like arriving nearby counts as a date.", "joke": true, "to": "taxi-3", "fx": { "addMinutes": 8 } },
+        { "text": "Sit in the back and reread your own On my way.", "to": "taxi-3" }
+      ]
+    },
+    "taxi-3": {
+      "clock": "8:44pm",
+      "lines": [
+        { "speaker": "momo", "text": "Cracker update. The shy one is gone. The show-off is performing. I am the audience and the threat." },
+        { "speaker": "you", "text": "You are between all of them, which means you are with no one." }
+      ],
+      "choices": [
+        { "text": "Tell her to save one cracker.", "to": "taxi-4" },
+        { "text": "Ask her to describe them so you can suffer properly.", "joke": true, "to": "taxi-4", "fx": { "addMinutes": 8 } },
+        { "text": "Stop watching the basket.", "to": "taxi-4" }
+      ]
+    },
+    "taxi-4": {
+      "clock": "9:08pm",
+      "lines": [
+        { "speaker": "you", "text": "9:10 was supposed to be the end of one date. You are still in a second taxi." },
+        { "speaker": "momo", "text": "An honest text from a tunnel is still a second bubble under On my way." }
+      ],
+      "choices": [
+        { "text": "Text all of them that you can only be in one place.", "to": "taxi-check" },
+        { "text": "Send the selfie a loyalty message.", "joke": true, "to": "taxi-check", "fx": { "addMinutes": 6 } },
+        { "text": "Watch 9:30 coming in the second taxi.", "to": "taxi-check" }
+      ]
+    },
+    "taxi-check": {
+      "clock": "9:22pm",
+      "lines": [
+        { "speaker": "driver", "text": "The meter is the only company you kept." },
+        { "speaker": "momo", "text": "Save you a cracker? I am negotiating with myself, and I am winning." }
+      ],
+      "choices": [
+        { "text": "Pay the meter.", "to": "taxi-photo" },
+        { "text": "Ask the driver if this counts as a date.", "joke": true, "to": "taxi-photo" },
+        { "text": "Text Momo: save me a cracker.", "to": "taxi-photo" }
+      ]
+    },
+    "taxi-photo": {
+      "clock": "9:32pm",
+      "lines": [
+        { "speaker": "momo", "text": "9:30 passed between taxis. Photo incoming. You should not look." },
+        { "speaker": "you", "text": "All three stopped waiting while you watched a basket." }
+      ],
+      "choices": [
+        { "text": "Look at the empty basket.", "to": "email" },
+        { "text": "Ask if the basket has a plus-one. It does not.", "joke": true, "to": "email" },
+        { "text": "Put the phone face down.", "to": "email" }
+      ]
+    },
+    "toast-who": {
+      "clock": "7:52pm",
+      "lines": [
+        { "speaker": "you", "text": "You listened, so they believe you about the clock. One of them comes. Milk tea. Ten minutes, not thirty." },
+        { "speaker": "momo", "text": "French toast is a date if you do not waste it on a bun." }
+      ],
+      "choices": [
+        { "text": "Rin comes. Ten minutes on what she meant.", "to": "toast-rin", "fx": { "set": { "toastHost": "rin", "sorted": true }, "addAffection": { "rin": 1 } } },
+        { "text": "Point at the pineapple bun and call the date to order.", "joke": true, "to": "toast-blew", "fx": { "set": { "justAte": true, "blewToast": true }, "addMinutes": 10 } },
+        { "text": "Vera comes. Ten minutes on the one real conversation.", "to": "toast-vera", "fx": { "set": { "toastHost": "vera", "heardVera": true }, "addAffection": { "vera": 1 } } }
+      ]
+    },
+    "toast-rin": {
+      "lines": [
+        { "speaker": "rin", "text": "She drops the bit for ten minutes. She saved you a seat. She was nervous. Then the laugh tries to come back, and you don't let it." },
+        { "speaker": "you", "text": "You leave Vera her evening." }
+      ],
+      "next": "momo-beat"
+    },
+    "toast-vera": {
+      "lines": [
+        { "speaker": "vera", "text": "Over milk tea she says it once. A real conversation, and only if you are in it. She still has not said hello." },
+        { "speaker": "momo", "text": "Ten minutes. I am proud and suspicious." }
+      ],
+      "next": "momo-beat"
+    },
+    "toast-blew": {
+      "lines": [
+        { "speaker": "momo", "text": "You gaveled a bun. Nobody sat. I am listing crackers so you understand loss." },
+        { "speaker": "you", "text": "Pineapple bun. The ten minutes leave without you." }
+      ],
+      "next": "momo-beat"
+    },
+    "toast-alone": {
+      "clock": "7:55pm",
+      "lines": [
+        { "speaker": "you", "text": "Nobody comes. They could tell you had not listened. Pineapple bun. The date text sits on read." },
+        { "speaker": "momo", "text": "Cracker one is shy. Cracker two is showing off. Cracker three left with a girl who is not you." }
+      ],
+      "choices": [
+        { "text": "Chew, and regret in silence.", "to": "momo-beat" },
+        { "text": "Ask Momo to leave the party and sit down.", "joke": true, "to": "momo-sit", "fx": { "addAffection": { "momo": 1 }, "set": { "heardMomo": true }, "addMinutes": 8 } },
+        { "text": "Box the bun. You are not proud.", "to": "momo-beat" }
+      ]
+    },
+    "momo-sit": {
+      "lines": [
+        { "speaker": "momo", "text": "She arrives with the basket, which is rude and perfect. For once she talks as herself, not as your bad advisor." },
+        { "speaker": "you", "text": "She wanted to be chosen, not used as a summary." }
+      ],
+      "next": "momo-beat"
+    },
+    "rin-door": {
+      "clock": "7:48pm",
+      "lines": [
+        { "speaker": "rin", "text": "She is already laughing when you sit. The photo did not exaggerate the volume." },
+        { "speaker": "momo", "text": "If you become the audience, I will mention it forever." }
+      ],
+      "choices": [
+        { "text": "Sit down before the bit eats the hour.", "to": "rin-arrive" },
+        { "text": "Ask her to introduce you to the selfie.", "joke": true, "to": "rin-arrive", "fx": { "addMinutes": 8, "addAffection": { "rin": 1 } } },
+        { "text": "Put your phone face down.", "to": "rin-arrive" }
+      ]
+    },
+    "rin-arrive": {
+      "lines": [
+        { "speaker": "rin", "text": "Six things she wanted to say. She wants to start with the joke." },
+        { "speaker": "you", "text": "The true things are under it, if you ask." }
+      ],
+      "choices": [
+        { "text": "Tell me the real part after the laugh.", "to": "rin-sort-check" },
+        { "text": "Do the whole bit. All six. Don't stop.", "joke": true, "to": "rin-show", "fx": { "set": { "armful": true }, "addAffection": { "rin": 1 }, "addMinutes": 12 } },
+        { "text": "You look really nice.", "to": "rin-face", "fx": { "set": { "rinGrey": true, "looksFirst": true }, "grey": ["rin"] } }
+      ]
+    },
+    "rin-sort-check": {
+      "route": [
+        { "if": { "readBoth": true }, "to": "rin-sorted", "fx": { "set": { "sorted": true }, "addAffection": { "rin": 1 } } },
+        { "if": { "readRin": true }, "to": "rin-sorted", "fx": { "set": { "sorted": true }, "addAffection": { "rin": 1 } } },
+        { "to": "rin-need-ten" }
+      ]
+    },
+    "rin-sorted": {
+      "lines": [
+        { "speaker": "you", "text": "Two things were true. She saved you a seat. She is nervous, and the laugh is cover." },
+        { "speaker": "rin", "text": "She goes quiet, which on Rin looks like a magic trick. Then she smiles like she means it." }
+      ],
+      "choices": [
+        { "text": "Say the two true things back to her.", "to": "momo-beat" },
+        { "text": "Ask if the selfie gets to walk you out.", "joke": true, "to": "momo-beat", "fx": { "addAffection": { "rin": 1 }, "addMinutes": 8 } },
+        { "text": "Stop while you still know which part was real.", "to": "momo-beat" }
+      ]
+    },
+    "rin-need-ten": {
+      "lines": [
+        { "speaker": "rin", "text": "You didn't listen ahead of time, so she stays inside the bit. The nervous part does not get a turn." },
+        { "speaker": "momo", "text": "Ten honest minutes, or you are just someone who liked a photo." }
+      ],
+      "choices": [
+        { "text": "Ask her to drop the bit for ten minutes.", "to": "rin-sorted-late", "fx": { "set": { "sorted": true }, "addAffection": { "rin": 1 }, "addMinutes": 20 } },
+        { "text": "Laugh, and take all six stories anyway.", "joke": true, "to": "rin-show", "fx": { "set": { "armful": true }, "addAffection": { "rin": 1 }, "addMinutes": 12 } },
+        { "text": "Let her keep performing. You like the noise.", "to": "rin-show", "fx": { "set": { "justAte": true, "armful": true } } }
+      ]
+    },
+    "rin-sorted-late": {
+      "lines": [
+        { "speaker": "rin", "text": "She sighs, then gives you ten minutes. Saved you a seat. Was nervous. The joke can wait, and it hates that." },
+        { "speaker": "you", "text": "You leave the other four stories on the table, on purpose." }
+      ],
+      "next": "momo-beat"
+    },
+    "rin-show": {
+      "lines": [
+        { "speaker": "rin", "text": "The table laughs. You get every story and you still don't know which two she meant." },
+        { "speaker": "momo", "text": "You have a show. You do not have a girl who thinks you heard her." }
+      ],
+      "choices": [
+        { "text": "Smile like the show was the date.", "to": "momo-beat" },
+        { "text": "Ask for story number seven.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
+        { "text": "Don't ask which part was real.", "to": "momo-beat" }
+      ]
+    },
+    "rin-face": {
+      "lines": [
+        { "speaker": "rin", "text": "She stops laughing. \"That's the photo. I already sent you that.\"" },
+        { "speaker": "you", "text": "She wanted the two true things. You gave her the face. She doesn't sit back down." }
+      ],
+      "next": "momo-beat"
+    },
+    "vera-door": {
+      "clock": "7:48pm",
+      "lines": [
+        { "speaker": "vera", "text": "A quiet table. Sparkling water. She has not said hello." },
+        { "speaker": "momo", "text": "Match her volume or I will do it for you, badly." }
+      ],
+      "choices": [
+        { "text": "Sit. Wait. Match her volume.", "to": "vera-table" },
+        { "text": "Almost say the loudest compliment, then don't.", "joke": true, "to": "vera-table", "fx": { "addMinutes": 6 } },
+        { "text": "Nod like you already know what she meant.", "to": "vera-table" }
+      ]
+    },
+    "vera-table": {
+      "lines": [
+        { "speaker": "vera", "text": "She waits. The real conversation does not start itself." },
+        { "speaker": "momo", "text": "This is the part where people mention her face. Don't." }
+      ],
+      "choices": [
+        { "text": "Tell me what you meant.", "to": "vera-walk", "fx": { "set": { "heardVera": true }, "addAffection": { "vera": 1 } } },
+        { "text": "Momo says the crackers judge my dates. True or false.", "joke": true, "to": "vera-cracker", "fx": { "addAffection": { "vera": 1 }, "set": { "crackerAsk": true } } },
+        { "text": "You look really nice.", "to": "vera-face", "fx": { "set": { "looksFirst": true, "veraGrey": true }, "grey": ["vera"] } }
+      ]
+    },
+    "vera-walk": {
+      "clock": "8:08pm",
+      "lines": [
+        { "speaker": "vera", "text": "She says it once. One real conversation. It only counts if you are here for it, not for the voice note, and not for how she looks." },
+        { "speaker": "you", "text": "She might still leave with you. She has not said hello." }
+      ],
+      "choices": [
+        { "text": "Ask what happens if you only liked the voice note.", "to": "momo-beat" },
+        { "text": "Ask if the evening has a name.", "joke": true, "to": "momo-beat" },
+        { "text": "Stop talking while you are ahead.", "to": "momo-beat" }
+      ]
+    },
+    "vera-cracker": {
+      "lines": [
+        { "speaker": "vera", "text": "She almost smiles. The real conversation stays closed." },
+        { "speaker": "momo", "text": "False. The crackers are loyal to me. You are on probation." }
+      ],
+      "choices": [
+        { "text": "Ask what she meant. Properly this time.", "to": "vera-walk-short", "require": { "clockBefore": "9:00pm" }, "fx": { "set": { "heardVera": true }, "addAffection": { "vera": 1 } } },
+        { "text": "Ask about the crackers again.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
+        { "text": "Let the smile be the whole date.", "to": "momo-beat" }
+      ]
+    },
+    "vera-walk-short": {
+      "lines": [
+        { "speaker": "vera", "text": "Three sentences. For her, that is a lot. She wanted you in the conversation, not in a performance." },
+        { "speaker": "you", "text": "You asked. She might still leave with you." }
+      ],
+      "next": "momo-beat"
+    },
+    "vera-face": {
+      "lines": [
+        { "speaker": "vera", "text": "That's the face." },
+        { "speaker": "you", "text": "She leaves. You noticed the wrong thing. The route goes with her." }
+      ],
+      "next": "momo-beat"
+    },
+    "vera-empty": {
+      "clock": "7:52pm",
+      "lines": [
+        { "speaker": "you", "text": "Her water is here. She is not. The conversation left with her." },
+        { "speaker": "momo", "text": "Her chair is empty. I can see that from the party." }
+      ],
+      "choices": [
+        { "text": "Sit with the empty chair anyway.", "to": "momo-beat" },
+        { "text": "Order two sparkling waters and toast the absence.", "joke": true, "to": "momo-beat", "fx": { "addMinutes": 8 } },
+        { "text": "Leave before the evening learns your name.", "to": "momo-beat" }
+      ]
+    },
+    "momo-beat": {
+      "clock": "8:40pm",
+      "lines": [
+        { "speaker": "momo", "text": "Still at the party. The basket is smaller. Do you want me as a narrator, or as a person." }
+      ],
+      "choices": [
+        { "text": "Tell her you are on a date.", "to": "check" },
+        { "text": "Tell her you wish she were here.", "joke": true, "to": "check", "fx": { "addAffection": { "momo": 1 }, "addMinutes": 6 } },
+        { "text": "Put the phone face down.", "to": "check" }
+      ]
+    },
+    "check": {
+      "clock": "9:10pm",
+      "lines": [
+        { "speaker": "you", "text": "9:10. One line left. Ask her to come with you, or don't." },
+        { "speaker": "momo", "text": "If you freeze, the guest line stays a blank. I have opinions and crumbs." }
+      ],
+      "choices": [
+        {
+          "text": "Ask Vera to come with you.",
+          "to": "cab-vera",
+          "require": { "heardVera": true, "veraGrey": false, "looksFirst": false, "notesCompared": false },
+          "fx": { "set": { "askedVera": true } }
+        },
+        { "text": "Say nothing. Text Momo that you're fine.", "joke": true, "to": "email", "fx": { "set": { "saidNothing": true } } },
+        {
+          "text": "Ask Rin to come with you.",
+          "to": "cab-rin",
+          "require": { "sorted": true, "armful": false, "rinGrey": false, "notesCompared": false },
+          "fx": { "set": { "askedRin": true } }
+        },
+        {
+          "text": "Ask Momo to come with you.",
+          "to": "cab-momo",
+          "require": { "momoAtLeast": 2, "momoLied": false, "notesCompared": false, "heardVera": false, "sorted": false },
+          "fx": { "set": { "askedMomo": true } }
+        }
+      ]
+    },
+    "cab-vera": {
+      "clock": "9:22pm",
+      "lines": [
+        { "speaker": "vera", "text": "She is already in a cab. She still has not added a second sentence." },
+        { "speaker": "momo", "text": "If you add a speech now I will eat the good cracker out of spite." }
+      ],
+      "choices": [
+        { "text": "Send: I'm coming with you.", "to": "email" },
+        { "text": "Send a photo of milk tea like it is a confession.", "joke": true, "to": "email", "fx": { "addMinutes": 6 } },
+        { "text": "Don't add a second sentence.", "to": "email" }
+      ]
+    },
+    "cab-rin": {
+      "clock": "9:22pm",
+      "lines": [
+        { "speaker": "rin", "text": "She meets you outside, quieter than the photo. The laugh is still there. It is not the whole of her." },
+        { "speaker": "momo", "text": "She said yes to the sidewalk. Do not ruin it with a seventh story." }
+      ],
+      "choices": [
+        { "text": "Walk with her. No extra bit.", "to": "email" },
+        { "text": "Ask the night to pose for one more photo.", "joke": true, "to": "email", "fx": { "addMinutes": 6 } },
+        { "text": "Don't add a joke. Let it be the true part.", "to": "email" }
+      ]
+    },
+    "cab-momo": {
+      "clock": "9:22pm",
+      "lines": [
+        { "speaker": "momo", "text": "You finally asked the person who spent the night in your ear. She is already outside." },
+        { "speaker": "you", "text": "She wanted to be chosen. Not summarized." }
+      ],
+      "choices": [
+        { "text": "Tell her you mean it.", "to": "email" },
+        { "text": "Offer her the last cracker like a ring.", "joke": true, "to": "email", "fx": { "addMinutes": 6 } },
+        { "text": "Don't add a speech. She hates those.", "to": "email" }
+      ]
+    },
+    "email": {
+      "clock": "9:40pm",
+      "lines": [
+        { "speaker": "you", "text": "9:40. The evening is over. A card is in your hand. It was not there at 6:40. Guest: ________." },
+        { "speaker": "momo", "text": "Last line. Who did you actually win." }
+      ],
+      "choices": [
+        {
+          "text": "Write Vera's name.",
+          "to": "end",
+          "require": { "heardVera": true, "askedVera": true, "veraGrey": false, "looksFirst": false, "notesCompared": false, "doubleBooked": false },
+          "fx": { "set": { "guest": "vera" } }
+        },
+        { "text": "Leave the guest line blank.", "joke": true, "to": "end", "fx": { "set": { "guest": "" } } },
+        {
+          "text": "Write Rin's name.",
+          "to": "end",
+          "require": { "sorted": true, "askedRin": true, "armful": false, "rinGrey": false, "notesCompared": false, "doubleBooked": false },
+          "fx": { "set": { "guest": "rin" } }
+        },
+        {
+          "text": "Write Momo's name.",
+          "to": "end",
+          "require": { "askedMomo": true, "momoAtLeast": 2, "momoLied": false, "notesCompared": false, "doubleBooked": false },
+          "fx": { "set": { "guest": "momo" } }
+        }
+      ]
+    },
+    "end": { "ending": true }
+  }
+}
+  </script>
+  <script src="game.js"></script>
+</body>
+</html>
