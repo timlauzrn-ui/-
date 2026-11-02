@@ -1,0 +1,12 @@
+# Local configuration: share paths, field map, and recipients.
+config.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Office lock and temp files
+~$*
+*.tmp

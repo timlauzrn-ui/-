@@ -1,0 +1,53 @@
+{
+  "share_root": "",
+  "logsheet_path": "",
+  "logsheet_sheet": "",
+  "logsheet_header_rows": "",
+  "logsheet_columns": {
+    "form_no": "",
+    "department": "",
+    "staff_no": "",
+    "staff_name": "",
+    "ad_account": "",
+    "last_working_day": "",
+    "received_date": ""
+  },
+  "checklist_pdf": "",
+  "filing_date_field": "last_working_day",
+  "year_folder_format": "%Y",
+  "month_folder_format": "%m",
+  "date_formats": [
+    "%Y-%m-%d",
+    "%d/%m/%Y",
+    "%d-%m-%Y",
+    "%d/%m/%Y %H:%M",
+    "%d/%m/%Y %H:%M:%S",
+    "%Y/%m/%d",
+    "%d %b %Y",
+    "%d %B %Y",
+    "%b %d, %Y",
+    "%B %d, %Y",
+    "%m/%d/%Y"
+  ],
+  "outlook": {
+    "mailbox": "",
+    "folder_path": "",
+    "subject_contains": "",
+    "processed_folder": "",
+    "processed_category": "SeparationFiled"
+  },
+  "summary_mail": {
+    "to": [],
+    "cc": [],
+    "subject": "Separation forms filed"
+  },
+  "word_fields": {
+    "form_no": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "department": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "staff_no": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "staff_name": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "ad_account": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "last_working_day": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""},
+    "received_date": {"kind": "", "tag": "", "title": "", "table": "", "row": "", "column": ""}
+  }
+}
